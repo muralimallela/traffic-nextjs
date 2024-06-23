@@ -1,8 +1,11 @@
 import React from 'react'
+import { NewReport } from '@/components/newReport'
 
 function page() {
   return (
-    <div>Violation Page</div>
+    <div>
+      <NewReport/>
+    </div>
   )
 }
 

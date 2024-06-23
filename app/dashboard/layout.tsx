@@ -12,7 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div>
       <Navbar />
       <Sidebar />
-      <div className="relative  ml-[66px] h-[2000px] mt-12 bg-orange-800">{children}</div>
+      <div className="relative  ml-[66px]  mt-12">{children}</div>
     </div>
   );
 };

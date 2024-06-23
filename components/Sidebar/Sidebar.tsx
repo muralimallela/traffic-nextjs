@@ -31,7 +31,7 @@ const Sidebar: FC = () => {
               setOpen(false);
               setSubmenuOpenIndex(null);
             }}
-            className="absolute bg-green-600 opacity-40 inset-0"
+            className="absolute bg-black opacity-20 inset-0"
             tabIndex={0}
           ></div>
         </div>
@@ -72,18 +72,20 @@ const Sidebar: FC = () => {
 
           <ul className="pt-6 pl-2">
             {Menus.map((Menu, index) => {
-
-              const isActive = pathname.startsWith(Menu.href || "#");
+              const isActive = pathname.endsWith(Menu.href || "#");
+              const isSubActive = pathname.split("/").includes("report");
               return (
                 <li key={index} className="relative">
                   <Link href={Menu.href || "#"}>
                     <div
                       onClick={() => handleMenuClick(index)}
                       className={`flex ${
-                        Menu.submenu && submenuOpenIndex === index
-                          ? "rounded-l-3xl"
+                        Menu.submenu && isSubActive
+                          ? "bg-white text-black"
                           : "rounded-l-3xl"
-                      } p-2 cursor-pointer hover:bg-white hover:text-black ${isActive && "bg-yellow"} text-sm items-center gap-x-4 ${
+                      } p-2 cursor-pointer rounded-l-3xl  ${
+                        isActive && "bg-white text-black"
+                      } text-sm items-center gap-x-4 ${
                         Menu.gap ? "mt-9" : "mt-2"
                       } text-white ${index === 0 && " "}`}
                     >
@@ -101,12 +103,12 @@ const Sidebar: FC = () => {
                     <ul className="pl-12  rounded-b-3xl shadow-md">
                       {Menu.submenu.map((submenuItem, subIndex) => (
                         <Link key={subIndex} href={submenuItem.href}>
-                          <li className="flex items-center rounded-l-3xl text-white hover:bg-white hover:text-black pb-3 pl-3">
+                          <li className="flex items-center rounded-l-3xl text-white pb-3 pl-3">
                             <div
                               onClick={() => setOpen(false)}
                               className="flex items-center  mt-3 w-full cursor-pointer gap-x-4"
                             >
-                              {submenuItem.icon}
+                              <div>{submenuItem.icon}</div>
                               <span>{submenuItem.title}</span>
                             </div>
                           </li>
@@ -129,7 +131,6 @@ const Sidebar: FC = () => {
                 !open && "hidden"
               } ml-3 mt-0.5`}
             >
-              {pathname}
               Logout
             </p>
           </div>
