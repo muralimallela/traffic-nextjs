@@ -31,7 +31,7 @@ const Sidebar: FC = () => {
               setOpen(false);
               setSubmenuOpenIndex(null);
             }}
-            className="absolute bg-black opacity-20 inset-0"
+            className="absolute inset-0"
             tabIndex={0}
           ></div>
         </div>
@@ -81,13 +81,15 @@ const Sidebar: FC = () => {
                       onClick={() => handleMenuClick(index)}
                       className={`flex ${
                         Menu.submenu && isSubActive
-                          ? "bg-white text-black"
-                          : "rounded-l-3xl"
-                      } p-2 cursor-pointer rounded-l-3xl  ${
+                          ? "bg-white text-gray-900"
+                          : "rounded-l-3xl text-black"
+                      } p-2 cursor-pointer rounded-l-3xl ${
+                        (!isActive ) && " text-white"
+                      } ${
                         isActive && "bg-white text-black"
                       } text-sm items-center gap-x-4 ${
                         Menu.gap ? "mt-9" : "mt-2"
-                      } text-white ${index === 0 && " "}`}
+                      } ${index === 0 && " "}`}
                     >
                       <div>{Menu.src}</div>
                       <span
